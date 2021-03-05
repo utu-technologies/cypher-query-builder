@@ -95,7 +95,7 @@
     "neo4j-driver": "^4.1.2",
     "node-cleanup": "^2.1.2",
     "rxjs": "^6.5.2",
-    "tslib": "^1.10.0"
+    "tslib": "^2.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.5.0",
