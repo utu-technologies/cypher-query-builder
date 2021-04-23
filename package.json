@@ -5,6 +5,7 @@
   "author": "James Ferguson",
   "license": "MIT",
   "repository": "github:jamesfer/cypher-query-builder",
+  "files": [ "dist/**/*" ],
   "main": "dist/cjs5.js",
   "module": "dist/esm5.js",
   "es2015": "dist/esm2015.js",
@@ -31,7 +32,8 @@
     "report": "scripts/report",
     "test": "scripts/test-integration",
     "test:unit": "scripts/test",
-    "validate": "scripts/validate"
+    "validate": "scripts/validate",
+    "prepare": "npm run build"
   },
   "config": {
     "commitizen": {
