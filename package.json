@@ -26,6 +26,7 @@
     "build": "scripts/build declaration && scripts/build rollup",
     "build:declaration": "scripts/build declaration",
     "build:rollup": "scripts/build rollup",
+    "prepare": "npm run build",
     "docs": "scripts/docs",
     "lint": "scripts/lint",
     "report": "scripts/report",
