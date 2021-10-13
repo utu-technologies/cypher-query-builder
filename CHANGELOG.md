@@ -1,3 +1,24 @@
+## [6.0.4](https://github.com/jamesfer/cypher-query-builder/compare/v6.0.3...v6.0.4) (2020-12-21)
+
+
+### Bug Fixes
+
+* **build:** add missing build step before releasing ([cd68ec3](https://github.com/jamesfer/cypher-query-builder/commit/cd68ec3e3a970d2c7e274700ae45e3d07fb91b40)), closes [#173](https://github.com/jamesfer/cypher-query-builder/issues/173)
+
+## [6.0.3](https://github.com/jamesfer/cypher-query-builder/compare/v6.0.2...v6.0.3) (2020-12-16)
+
+
+### Bug Fixes
+
+* **Package:** Reduce package size ([b8238ac](https://github.com/jamesfer/cypher-query-builder/commit/b8238ac6cdde73d6a28c2bd65be0fe72387df123))
+
+## [6.0.2](https://github.com/jamesfer/cypher-query-builder/compare/v6.0.1...v6.0.2) (2020-12-12)
+
+
+### Bug Fixes
+
+* **termlist:** fix handling of nested dictionaries ([93a5cd4](https://github.com/jamesfer/cypher-query-builder/commit/93a5cd42b63812905de8a953574cee147f4de390)), closes [#137](https://github.com/jamesfer/cypher-query-builder/issues/137)
+
 ## [6.0.1](https://github.com/jamesfer/cypher-query-builder/compare/v6.0.0...v6.0.1) (2020-09-26)
 
 
