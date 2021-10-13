@@ -218,7 +218,7 @@ export function contains(value: string, variable?: boolean) {
  * @param {boolean} variable
  * @returns {Comparator}
  */
-export function inArray(value: any[], variable?: boolean) {
+export function inArray(value: any[] | string, variable?: boolean) {
   return compare('IN', value, variable);
 }
 
