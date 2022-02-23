@@ -16,6 +16,7 @@ import { Clause } from './clause';
 import { RemoveProperties } from './clauses/remove';
 import { Union } from './clauses/union';
 import { ReturnOptions } from './clauses/return';
+import {ParameterBag} from './parameter-bag';
 
 /**
  * @internal
@@ -216,6 +217,8 @@ export abstract class Builder<Q> extends SetBlock<Q> {
    * @returns {Q}
    */
   protected abstract continueChainClause(clause: Clause): Q;
+
+  abstract getParameterBag(): ParameterBag;
 
   /**
    * Adds a [create]{@link https://neo4j.com/docs/developer-manual/current/cypher/clauses/create}
@@ -509,7 +512,7 @@ export abstract class Builder<Q> extends SetBlock<Q> {
    * @returns {Q}
    */
   raw(clause: string | TemplateStringsArray, ...args: any[]) {
-    return this.continueChainClause(new Raw(clause, ...args));
+    return this.continueChainClause(new Raw(clause, this.getParameterBag(), ...args));
   }
 
   /**

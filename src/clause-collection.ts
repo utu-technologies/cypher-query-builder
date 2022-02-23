@@ -17,7 +17,7 @@ export class ClauseCollection extends Clause {
    * @param {Clause} clause
    */
   addClause(clause: Clause) {
-    clause.useParameterBag(this.parameterBag);
+    if(!clause.hasQueryParameterBag()) clause.useParameterBag(this.parameterBag);
     this.clauses.push(clause);
   }
 

@@ -4,6 +4,8 @@ import { Connection, Observer } from './connection';
 import { Builder } from './builder';
 import { ClauseCollection } from './clause-collection';
 import { Clause, QueryObject } from './clause';
+import {Raw} from './clauses';
+import { ParameterBag } from './parameter-bag';
 
 export class Query extends Builder<Query> {
   protected clauses = new ClauseCollection();
@@ -19,6 +21,10 @@ export class Query extends Builder<Query> {
 
   protected continueChainClause(clause: Clause) {
     return this.addClause(clause);
+  }
+
+  getParameterBag(): ParameterBag {
+    return this.clauses.getParameterBag();
   }
 
   /**

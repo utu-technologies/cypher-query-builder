@@ -7,6 +7,7 @@ import { Query } from './query';
 import { Builder } from './builder';
 import { Clause } from './clause';
 import { Observable } from 'rxjs';
+import { ParameterBag } from './parameter-bag';
 
 let connections: Connection[] = [];
 
@@ -32,7 +33,10 @@ export interface FullConnectionOptions {
 
 export type ConnectionOptions = Partial<FullConnectionOptions>;
 
-export interface Credentials { username: string; password: string; }
+export interface Credentials {
+  username: string;
+  password: string;
+}
 
 function isCredentials(credentials: any): credentials is Credentials {
   return 'username' in credentials && 'password' in credentials;
@@ -44,13 +48,14 @@ const isTrueFunction: (value: any) => value is Function = isFunction;
 
 // eslint-disable  max-len
 /**
- * The Connection class lets you access the Neo4j server and run queries against it. Under the hood,
+ * The Connection class lets you access the Neo4j server and run queries against it. Under the
+ * hood,
  * the Connection class uses the official Neo4j Nodejs driver which manages connection pooling on a
- * [session basis]{@link https://neo4j.com/docs/api/javascript-driver/current/class/src/v1/driver.js~Driver.html#instance-method-session}.
- * It should be enough to have a single Connection instance per database per application.
+ * [session basis]{@link https://neo4j.com/docs/api/javascript-driver/current/class/src/v1/driver.js~Driver.html#instance-method-session}. It should be enough to have a single Connection instance per database per application.
  *
  * To create the connection, simply call the
- * [constructor]{@link https://jamesfer.me/cypher-query-builder/classes/connection.html#constructor}
+ * [constructor]{@link
+ * https://jamesfer.me/cypher-query-builder/classes/connection.html#constructor}
  * and pass in the database url, username and password.
  * ```
  * const db = new Connection('bolt://localhost', {
@@ -171,6 +176,10 @@ export class Connection extends Builder<Query> {
 
   protected continueChainClause(clause: Clause) {
     return this.query().addClause(clause);
+  }
+
+  getParameterBag(): ParameterBag {
+    return this.query().getParameterBag();
   }
 
   /**

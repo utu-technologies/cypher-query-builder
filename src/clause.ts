@@ -47,4 +47,13 @@ export abstract class Clause extends ParameterContainer {
     }
     return query;
   }
+
+  /**
+   * Indicates whether this clause already uses the containing query's parameter bag, or its own
+   * local one. In the latter case, useParameterBag() probably needs to be called when adding to a
+   * query.
+   */
+  hasQueryParameterBag() {
+    return false;
+  }
 }

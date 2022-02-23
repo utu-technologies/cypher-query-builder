@@ -8,12 +8,19 @@ import {
   isNil,
 } from 'lodash';
 import { Clause } from '../clause';
+import { ParameterBag } from '../parameter-bag';
 
 export class Raw extends Clause {
   clause: string;
+  parameterBagPassedIn: boolean = false;
 
-  constructor(clause: string | TemplateStringsArray, ...args: any[]) {
+  constructor(clause: string | TemplateStringsArray, parameterBag?: ParameterBag, ...args: any[]) {
     super();
+
+    if(parameterBag) {
+      this.parameterBag = parameterBag;
+      this.parameterBagPassedIn = true;
+    }
 
     if (isString(clause)) {
       this.clause = clause;
@@ -37,5 +44,9 @@ export class Raw extends Clause {
 
   build() {
     return this.clause;
+  }
+
+  hasQueryParameterBag() {
+    return this.parameterBagPassedIn;
   }
 }

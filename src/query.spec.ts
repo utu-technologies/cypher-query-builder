@@ -1,9 +1,9 @@
-import { Dictionary, each } from 'lodash';
+import {Dictionary, each, values} from 'lodash';
 import { spy, stub } from 'sinon';
 import { expect } from '../test-setup';
 import { mockConnection } from '../tests/connection.mock';
 import { ClauseCollection } from './clause-collection';
-import { node, NodePattern } from './clauses';
+import {node, NodePattern, Raw} from './clauses';
 import { Query } from './query';
 import { Observable } from 'rxjs';
 
@@ -49,6 +49,17 @@ describe('Query', () => {
         expect(query.getClauses().length === 1);
         expect(query.build()).to.equal(`${query.getClauses()[0].build()};`);
       });
+    });
+
+
+    it('should generate unique param names for consecutive tag applications', () => {
+      const query = (new Query())
+          .raw`WITH ${"name1"}`
+          .raw`, ${"name2"}`;
+
+      const queryObject = query.buildQueryObject();
+      expect(queryObject.query).to.equal("WITH $p\n, $p2;");
+      expect(queryObject.params).to.deep.equal({ p: "name1", p2: "name2" });
     });
   });
 
