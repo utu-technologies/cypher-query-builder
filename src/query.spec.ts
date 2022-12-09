@@ -51,6 +51,12 @@ describe('Query', () => {
       });
     });
 
+    it(`Multiple wheres should be concatenated by AND`, () => {
+      const query = new Query();
+      query.where({ name: 'value' }).where({ name2: 'value2' });
+      expect(query.build()).to.equal("WHERE name = $name\nAND name2 = $name2;");
+    });
+
 
     it('should generate unique param names for consecutive tag applications', () => {
       const query = (new Query())

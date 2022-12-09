@@ -182,6 +182,10 @@ export class Connection extends Builder<Query> {
     return this.query().getParameterBag();
   }
 
+  getClauses(): Clause[] {
+    return this.query().getClauses();
+  }
+
   /**
    * Runs the provided query on this connection, regardless of which connection
    * the query was created from. Each query is run on it's own session.

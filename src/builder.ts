@@ -1,4 +1,4 @@
-import { Dictionary, Many, assign } from 'lodash';
+import { Dictionary, Many, assign, last } from 'lodash';
 import {
   Limit, Match, NodePattern, Skip, Where, Set, Create,
   Return, With, Unwind, Delete, Raw, OrderBy, Merge, OnCreate, OnMatch,
@@ -219,6 +219,7 @@ export abstract class Builder<Q> extends SetBlock<Q> {
   protected abstract continueChainClause(clause: Clause): Q;
 
   abstract getParameterBag(): ParameterBag;
+  abstract getClauses(): Clause[];
 
   /**
    * Adds a [create]{@link https://neo4j.com/docs/developer-manual/current/cypher/clauses/create}
@@ -855,7 +856,7 @@ export abstract class Builder<Q> extends SetBlock<Q> {
    * @returns {Q}
    */
   where(conditions: AnyConditions) {
-    return this.continueChainClause(new Where(conditions));
+    return this.continueChainClause(new Where(conditions, last(this.getClauses())));
   }
 
   /**

@@ -11,6 +11,11 @@ describe('Where', () => {
       expect(query.build()).to.equal('WHERE name = $name');
     });
 
+    it('should start with AND', () => {
+      const query = new Where({ name: 'value' }, new Where({ name2: 'value2' }));
+      expect(query.build()).to.equal('AND name = $name');
+    });
+
     it('should compile with a comparator', () => {
       const query = new Where({ age: between(18, 65) });
       expect(query.build()).to.equal('WHERE age >= $lowerAge AND age <= $upperAge');
